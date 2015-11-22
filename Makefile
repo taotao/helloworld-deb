@@ -1,4 +1,4 @@
-POJECT=helloworld
+PROJECT=helloworld
 VERSION=0.0.1
 DEBVERSION=0taotao1
 DEBARCH=amd64
