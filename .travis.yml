@@ -10,6 +10,4 @@ before_install:
 
 script:
   - docker run -v $TRAVIS_BUILD_DIR:/tmp/build_dir taotaohsu/helloworld-deb-docker /bin/bash -c "cd /tmp/build_dir && make"
-
-after_script:
   - make upload
