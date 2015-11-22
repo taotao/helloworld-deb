@@ -1,5 +1,7 @@
-PROJECT=helloworld
+POJECT=helloworld
 VERSION=0.0.1
+DEBVERSION=0taotao1
+DEBARCH=amd64
 REPO=https://github.com/taotao/$(PROJECT).git
 
 PROJECT_SRC_DIR=$(PROJECT)
@@ -8,7 +10,7 @@ PROJECT_BUILD_DIR=$(PROJECT)-$(VERSION)
 ARCHIVE=$(PROJECT)-$(VERSION).tar.gz
 ORIG_ARCHIVE=$(PROJECT)_$(VERSION).orig.tar.gz
 
-.PHONY: all clean deb $(PROJECT_SRC_DIR)/$(ARCHIVE) $(ORIG_ARCHIVE)
+.PHONY: all clean deb $(PROJECT_SRC_DIR)/$(ARCHIVE) $(ORIG_ARCHIVE) upload
 
 all: deb
 
@@ -36,3 +38,6 @@ deb: $(ORIG_ARCHIVE)
 	tar zxvf $(ORIG_ARCHIVE)
 	cp -r debian/ $(PROJECT_BUILD_DIR)
 	cd $(PROJECT_BUILD_DIR) && debuild -us -uc
+
+upload:
+	curl -X PUT -T $(PROJECT)_$(VERSION)-$(DEBVERSION)_$(DEBARCH).deb -utaotao:$(bintray) https://api.bintray.com/content/taotao/deb/$(PROJECT)/$(VERSION)/pool/main/h/$(PRJECT)/$(PROJECT)_$(VERSION)-$(DEBVERSION)_$(DEBARCH).deb;deb_distribution=unstable;deb_component=main;deb_architecture=$(DEBARCH)
