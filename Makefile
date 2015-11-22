@@ -40,6 +40,7 @@ deb: $(ORIG_ARCHIVE)
 	cd $(PROJECT_BUILD_DIR) && debuild -us -uc
 
 upload:
-	@curl -X PUT -T $(PROJECT)_$(VERSION)-$(DEBVERSION)_$(DEBARCH).deb -utaotao:$(bintray) "https://api.bintray.com/content/taotao/deb/$(PROJECT)/$(VERSION)/$(PROJECT)_$(VERSION)-$(DEBVERSION)_$(DEBARCH).deb;deb_distribution=unstable;deb_component=main;deb_architecture=amd64"
-	@curl -X POST -utaotao:$(bintray) "https://api.bintray.com/content/taotao/deb/$(PROJECT)/$(VERSION)/publish"
-	echo "Upload OK..."
+	@curl --fail -X PUT -T $(PROJECT)_$(VERSION)-$(DEBVERSION)_$(DEBARCH).deb -utaotao:$(bintray) "https://api.bintray.com/content/taotao/deb/$(PROJECT)/$(VERSION)/$(PROJECT)_$(VERSION)-$(DEBVERSION)_$(DEBARCH).deb;deb_distribution=unstable;deb_component=main;deb_architecture=amd64"
+	@echo "Upload OK..."
+	@curl --fail -X POST -utaotao:$(bintray) "https://api.bintray.com/content/taotao/deb/$(PROJECT)/$(VERSION)/publish"
+	@echo "Publish OK..."
