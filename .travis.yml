@@ -1,0 +1,12 @@
+sudo: required
+
+language: c
+
+services:
+  - docker
+
+before_install:
+  - docker pull taotaohsu/helloworld-deb-docker
+
+script:
+  - docker run -v $TRAVIS_BUILD_DIR:/tmp/build_dir taotaohsu/helloworld-deb-docker /bin/bash -c "cd /tmp/build_dir && make"
