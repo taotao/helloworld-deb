@@ -1,0 +1,12 @@
+Source: helloworld
+Section: misc
+Priority: optional
+Maintainer: Taotao Hsu <taotaohsu@gmail.com>
+Build-Depends: debhelper (>=8)
+Standards-Version: 3.9.3
+
+Package: helloworld
+Architecture: any
+Depends: ${misc:Depends}
+Description: Hello World Program
+ This is a program only print "Hello World".
